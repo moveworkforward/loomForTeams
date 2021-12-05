@@ -1,0 +1,14 @@
+{
+    "solution": {
+        "teamsAppTenantId": "",
+        "provisionSucceeded": false
+    },
+    "fx-resource-aad-app-for-teams": {
+        "oauthHost": "https://login.microsoftonline.com",
+        "oauthAuthority": "https://login.microsoftonline.com/2c02e330-65b5-4e02-b6d4-7d9edf782fe3"
+    },
+    "fx-resource-appstudio": {},
+    "fx-resource-bot": {
+        "wayToRegisterBot": "create-new"
+    }
+}
