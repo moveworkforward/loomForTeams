@@ -3,10 +3,6 @@ import { TeamsActivityHandler, CardFactory, TurnContext} from "botbuilder";
 const { TaskModuleUIConstants } = require('../models/taskModuleUIConstants');
 const { TaskModuleIds } = require('../models/taskmoduleids');
 
-const Actions = [
-  TaskModuleUIConstants.Loom
-];
-
 export class MessageExtensionBot extends TeamsActivityHandler {
 
   public async handleTeamsMessagingExtensionSubmitAction(
@@ -108,14 +104,14 @@ async function createCardCommand(context: TurnContext, action: any): Promise<any
     "actions": [
       {
         "type": "Action.OpenUrl",
-        "title": "Play Test",
+        "title": "Play",
         "url": `https://teams.microsoft.com/l/task/e5416f2a-d41e-4f9a-bb00-879f81d0b2c8?url=${encodeURI(playerUrl[1])}&height=large&width=large&title=${title}`
       },
-      {
-        "type": "Action.Submit",
-        "title": "Play",
-        "data": { msteams: { type: 'task/fetch' }, data: { type: TaskModuleIds.Loom, sharedUrl } }
-      },
+      // {
+      //   "type": "Action.Submit",
+      //   "title": "Play",
+      //   "data": { msteams: { type: 'task/fetch' }, data: { type: TaskModuleIds.Loom, sharedUrl } }
+      // },
       {
         "type": "Action.OpenUrl",
         "title": "Watch on Loom",
