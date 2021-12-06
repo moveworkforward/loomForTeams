@@ -9,14 +9,6 @@ const Actions = [
 
 export class MessageExtensionBot extends TeamsActivityHandler {
 
-  constructor() {
-    super();
-
-    // this.baseUrl = process.env.BaseUrl;
-  }
-
-  // Message Extension Code
-  // Action.
   public async handleTeamsMessagingExtensionSubmitAction(
     context: TurnContext,
     action: any
@@ -40,10 +32,9 @@ export class MessageExtensionBot extends TeamsActivityHandler {
     const cardTaskFetchValue = taskModuleRequest.data.data;
     var taskInfo = {} as any;
     
-    if (cardTaskFetchValue === TaskModuleIds.Loom) {
+    if (cardTaskFetchValue.type === TaskModuleIds.Loom) {
       // taskInfo.url = taskInfo.fallbackUrl = this.baseUrl + '/' + TaskModuleIds.Loom + '.html';
-      taskInfo.url = taskInfo.fallbackUrl = '../pages/' + TaskModuleIds.Loom + '.html';
-      console.log(taskInfo.url);
+      taskInfo.url = taskInfo.fallbackUrl = `https://black-river-0bcb7c503.azurestaticapps.net/?sharedUrl=${cardTaskFetchValue.sharedUrl}`;
       this.setTaskInfo(taskInfo, TaskModuleUIConstants.Loom);
     }
 
@@ -57,8 +48,6 @@ export class MessageExtensionBot extends TeamsActivityHandler {
 }
 
 async function createCardCommand(context: TurnContext, action: any): Promise<any> {
-  console.log('------> createCardCommand')
-  // The user has chosen to create a card by choosing the 'Create Card' context menu command.
   const data = action.data;
   let response;
   try {
@@ -71,8 +60,7 @@ async function createCardCommand(context: TurnContext, action: any): Promise<any
   
   const { thumbnail_url, duration, title, description, html } = response.data;
   const playerUrl = html.match(/"(http[s]:([A-Za-z0-9_\/\.\\]+))"/i);
-  const url = process.env.BaseUrl + `/embedPage.html`;
-  console.log(url, process.env);
+  const sharedUrl = encodeURI(data.url.split("?")[0]);
   const attachment = CardFactory.adaptiveCard({
     "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
     "type": "AdaptiveCard",
@@ -126,7 +114,7 @@ async function createCardCommand(context: TurnContext, action: any): Promise<any
       {
         "type": "Action.Submit",
         "title": "Play",
-        "data": { msteams: { type: 'task/fetch' }, data: 'Loom' }
+        "data": { msteams: { type: 'task/fetch' }, data: { type: TaskModuleIds.Loom, sharedUrl } }
       },
       {
         "type": "Action.OpenUrl",

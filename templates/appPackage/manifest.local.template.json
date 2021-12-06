@@ -55,7 +55,8 @@
         "messageTeamMembers"
     ],
     "validDomains": [
-        "www.loom.com"
+        "www.loom.com",
+        "black-river-0bcb7c503.azurestaticapps.net"
     ],
     "webApplicationInfo": {
         "id": "{{localSettings.auth.clientId}}",
