@@ -1,10 +1,6 @@
 # ⚡ **Get Started** ⚡
 
-1. Install 
-
-   [Teams Toolkit]: https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.ms-teams-vscode-extension	"Microsoft Teams Toolkit for Visual Studio Code"
-
-   
+1. Install [a Microsoft Teams Toolkit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.ms-teams-vscode-extension)
 
 2. Select a workspace folder.
 
