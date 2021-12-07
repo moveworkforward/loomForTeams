@@ -130,6 +130,11 @@ async function createCardCommand(context: TurnContext, action: any): Promise<any
         "url": `https://teams.microsoft.com/l/task/e5416f2a-d41e-4f9a-bb00-879f81d0b2c8?url=${encodeURI(playerUrl[1])}&height=large&width=large&title=${title}`
       },
       {
+        "type": "Action.OpenUrl",
+        "title": "Play proxy link",
+        "url": `https://teams.microsoft.com/l/task/e5416f2a-d41e-4f9a-bb00-879f81d0b2c8?url=${encodeURI(sharedUrl)}&height=large&width=large&title=${title}`
+      },
+      {
         "type": "Action.Submit",
         "title": "Play proxy",
         "data": { msteams: { type: 'task/fetch' }, data: { type: TaskModuleIds.Loom, sharedUrl } }
@@ -149,5 +154,6 @@ async function createCardCommand(context: TurnContext, action: any): Promise<any
       attachmentLayout: "list",
       attachments: [{...attachment, preview: attachment}],
     },
+
   };
 }
