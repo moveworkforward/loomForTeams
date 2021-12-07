@@ -1,14 +1,42 @@
 {
     "solution": {
-        "teamsAppTenantId": "",
-        "provisionSucceeded": false
+        "teamsAppTenantId": "57e6a115-9c9a-4cee-9e52-2cae48e2251a",
+        "provisionSucceeded": true,
+        "resourceNameSuffix": "a25b68",
+        "resourceGroupName": "loom-for-teams-react-static",
+        "tenantId": "57e6a115-9c9a-4cee-9e52-2cae48e2251a",
+        "subscriptionId": "aad7e5a4-4e16-4bf5-8dc8-37956c7ba9d0",
+        "subscriptionName": "Azure subscription 1",
+        "location": "westeurope"
     },
     "fx-resource-aad-app-for-teams": {
         "oauthHost": "https://login.microsoftonline.com",
-        "oauthAuthority": "https://login.microsoftonline.com/2c02e330-65b5-4e02-b6d4-7d9edf782fe3"
+        "oauthAuthority": "https://login.microsoftonline.com/57e6a115-9c9a-4cee-9e52-2cae48e2251a",
+        "clientId": "b95fd6a4-9733-46e1-9df0-ef9fe30d5048",
+        "clientSecret": "{{fx-resource-aad-app-for-teams.clientSecret}}",
+        "objectId": "e3864ba6-06e1-4545-beaf-c8fd46a24330",
+        "oauth2PermissionScopeId": "9f4d9ad3-dc32-47cf-8033-bd1f7f99be14",
+        "tenantId": "57e6a115-9c9a-4cee-9e52-2cae48e2251a",
+        "applicationIdUris": "api://botid-297e7b7f-7172-409f-9e4b-6442773a5339"
     },
-    "fx-resource-appstudio": {},
+    "fx-resource-appstudio": {
+        "teamsAppId": "31473892-a548-4c71-a1a4-fbe23fc7b875"
+    },
     "fx-resource-bot": {
-        "wayToRegisterBot": "create-new"
+        "wayToRegisterBot": "create-new",
+        "botId": "297e7b7f-7172-409f-9e4b-6442773a5339",
+        "botPassword": "{{fx-resource-bot.botPassword}}",
+        "objectId": "71557bb3-47f9-4e77-a375-e6e7d2dfb359",
+        "skuName": "F1",
+        "siteName": "loomvideomdev9701d8bot",
+        "validDomain": "loomvideomdev9701d8bot.azurewebsites.net",
+        "appServicePlanName": "loomvideomdev9701d8bot",
+        "botWebAppResourceId": "/subscriptions/aad7e5a4-4e16-4bf5-8dc8-37956c7ba9d0/resourceGroups/loom-for-teams-react-static/providers/Microsoft.Web/sites/loomvideomdev9701d8bot",
+        "siteEndpoint": "https://loomvideomdev9701d8bot.azurewebsites.net"
+    },
+    "fx-resource-identity": {
+        "identityName": "loomvideomdev9701d8",
+        "identityResourceId": "/subscriptions/aad7e5a4-4e16-4bf5-8dc8-37956c7ba9d0/resourceGroups/loom-for-teams-react-static/providers/Microsoft.ManagedIdentity/userAssignedIdentities/loomvideomdev9701d8",
+        "identityClientId": "0a76ba7e-dd53-482b-91fb-e068525cb539"
     }
 }

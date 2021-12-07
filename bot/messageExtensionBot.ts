@@ -1,7 +1,21 @@
 import { default as axios } from "axios";
 import { TeamsActivityHandler, CardFactory, TurnContext} from "botbuilder";
-const { TaskModuleUIConstants } = require('../models/taskModuleUIConstants');
-const { TaskModuleIds } = require('../models/taskmoduleids');
+
+const staticBaseUrl = 'https://black-river-0bcb7c503.azurestaticapps.net';
+
+const TaskModuleIds = {
+  Loom: 'Loom'
+};
+
+const TaskModuleUIConstants = {
+  Loom: {
+    width: 1000,
+    height: 700,
+    title: 'Loom video',
+    id: TaskModuleIds.Loom,
+    buttonTitle: 'Loom',
+  }
+};
 
 export class MessageExtensionBot extends TeamsActivityHandler {
 
@@ -29,8 +43,7 @@ export class MessageExtensionBot extends TeamsActivityHandler {
     var taskInfo = {} as any;
     
     if (cardTaskFetchValue.type === TaskModuleIds.Loom) {
-      // taskInfo.url = taskInfo.fallbackUrl = this.baseUrl + '/' + TaskModuleIds.Loom + '.html';
-      taskInfo.url = taskInfo.fallbackUrl = `https://black-river-0bcb7c503.azurestaticapps.net/?sharedUrl=${cardTaskFetchValue.sharedUrl}`;
+      taskInfo.url = taskInfo.fallbackUrl = `${staticBaseUrl}/?sharedUrl=${cardTaskFetchValue.sharedUrl}`;
       this.setTaskInfo(taskInfo, TaskModuleUIConstants.Loom);
     }
 
@@ -41,6 +54,12 @@ export class MessageExtensionBot extends TeamsActivityHandler {
       }
     };
   }
+
+  // public async handleTeamsAppBasedLinkQuery(context: TurnContext, data: any): Promise<any> {
+  //   const response = await createCardCommand(context, { data });
+  //   console.log(response);
+  //   return Promise.resolve(response);
+  // }
 }
 
 async function createCardCommand(context: TurnContext, action: any): Promise<any> {
@@ -57,6 +76,9 @@ async function createCardCommand(context: TurnContext, action: any): Promise<any
   const { thumbnail_url, duration, title, description, html } = response.data;
   const playerUrl = html.match(/"(http[s]:([A-Za-z0-9_\/\.\\]+))"/i);
   const sharedUrl = encodeURI(data.url.split("?")[0]);
+
+  console.log('TEST ->> ', playerUrl[1]);
+
   const attachment = CardFactory.adaptiveCard({
     "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
     "type": "AdaptiveCard",
@@ -107,11 +129,11 @@ async function createCardCommand(context: TurnContext, action: any): Promise<any
         "title": "Play",
         "url": `https://teams.microsoft.com/l/task/e5416f2a-d41e-4f9a-bb00-879f81d0b2c8?url=${encodeURI(playerUrl[1])}&height=large&width=large&title=${title}`
       },
-      // {
-      //   "type": "Action.Submit",
-      //   "title": "Play",
-      //   "data": { msteams: { type: 'task/fetch' }, data: { type: TaskModuleIds.Loom, sharedUrl } }
-      // },
+      {
+        "type": "Action.Submit",
+        "title": "Play proxy",
+        "data": { msteams: { type: 'task/fetch' }, data: { type: TaskModuleIds.Loom, sharedUrl } }
+      },
       {
         "type": "Action.OpenUrl",
         "title": "Watch on Loom",
@@ -125,7 +147,7 @@ async function createCardCommand(context: TurnContext, action: any): Promise<any
     composeExtension: {
       type: "result",
       attachmentLayout: "list",
-      attachments: [attachment],
+      attachments: [{...attachment, preview: attachment}],
     },
   };
 }

@@ -57,6 +57,16 @@
                         }
                     ]
                 }
+            ],
+            "messageHandlers": [
+                {
+                    "type": "link",
+                    "value": {
+                      "domains": [
+                        "*.loom.com"
+                      ]
+                    }
+                }
             ]
         }
     ],

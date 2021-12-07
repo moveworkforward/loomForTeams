@@ -23,7 +23,6 @@
         "full": "Full description of LoomVideoMessaging."
     },
     "accentColor": "#FFFFFF",
-    "bots": [],
     "composeExtensions": [
         {
             "botId": "{{state.fx-resource-bot.botId}}",
@@ -54,7 +53,9 @@
         "identity",
         "messageTeamMembers"
     ],
-    "validDomains": [],
+    "validDomains": [
+        "www.loom.com"
+    ],
     "webApplicationInfo": {
         "id": "{{state.fx-resource-aad-app-for-teams.clientId}}",
         "resource": "{{{state.fx-resource-aad-app-for-teams.applicationIdUris}}}"
